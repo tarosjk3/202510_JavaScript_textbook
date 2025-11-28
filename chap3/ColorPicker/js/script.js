@@ -20,7 +20,15 @@ text.textContent = `カラーコード: ${color.value}`
 
 
 const colorBg = () => {
-    text.textContent = `カラーコード: ${color.value}`;
+    document.body.style.backgroundColor = color.value;
+
+    if (color.value === '#ffffff') {
+        text.textContent = `カラーコード: ${color.value} (white)`;
+    } else if( color.value === '#000000') {
+        text.textContent = `カラーコード: ${color.value} (black)`;
+    } else {
+        text.textContent = `カラーコード: ${color.value}`;
+    }
 };
 // 要素.addEventListener('イベント名', 動作内容:関数)
 color.addEventListener('input', colorBg);
@@ -31,18 +39,33 @@ color.addEventListener('input', colorBg);
 // test(); // ⭕️
 function test(a) { //aの部分は引数という
     console.log('関数testが実行されました');
-    console.log( `今日の天気は ${a}`);
+    console.log(`今日の天気は ${a}`);
 }
 
 test('晴れ');
 test('雨');
+
+function add(a,b) {
+    return a + b;
+}
+
+const sum = add(5, 3)
 
 // アロー関数(関数式: 代入)
 // arrowTest(); // ❌
 // 引数が１つの場合は () は無くてもOK
 const arrowTest = (a, b) => {
     console.log('アロー関数が実行されました');
-    console.log( `今日の天気は ${a} ${b}`);
+    console.log(`今日の天気は ${a} ${b}`);
+
+    return '今日の天気予報をお伝えしました';
+
+    console.log('ここは実行される？');
 };
 
-arrowTest('曇り', '☁️');
+const result = arrowTest('曇り', '☁️');
+console.log(result);
+
+// P要素のスタイルをチェック
+console.log(text.style);
+text.style.backgroundColor = 'yellow';
