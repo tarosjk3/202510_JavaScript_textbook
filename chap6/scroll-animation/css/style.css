@@ -5,6 +5,14 @@ body {
     padding: 1rem;
 }
 
+body::after {
+    content: '';
+    position: fixed;
+    inset: 50px;
+    outline: 1px solid orange;
+    pointer-events: none;
+}
+
 h1 {
     margin: 50vh 0;
 }
