@@ -111,3 +111,59 @@ thumbImages.forEach((thumbImage) => {
 // }
 
 // test(abc);
+
+
+// スライドメニュー
+const menuOpen = document.querySelector('#menu-open'),
+    menuClose = document.querySelector('#menu-close'),
+    menuPanel = document.querySelector('#menu-panel'),
+    menuItems = document.querySelectorAll('#menu-panel li'),
+    menuOptions = {
+        duration: 1400,
+        easing: 'ease',
+        fill: 'forwards',
+    };
+
+menuOpen.addEventListener('click', () => {
+    menuPanel.animate(
+        {
+            translate: ['100vw', 0],
+        },
+        menuOptions
+    );
+
+    menuItems.forEach((menuItem, index) => {
+        menuItem.animate(
+            {
+                opacity: [0, 1],
+                translate: ['2rem', 0],
+            },
+            {
+                duration: 2400,
+                easing: 'ease',
+                fill: 'forwards',
+                delay: 300 * index,
+            }
+        );
+    });
+
+});
+
+menuClose.addEventListener('click', () => {
+    menuPanel.animate(
+        {
+            translate: [0, '100vw'],
+        },
+        menuOptions
+    );
+
+    menuItems.forEach((menuItem) => {
+        menuItem.animate(
+            {
+                opacity: [1, 0],
+            },
+            menuOptions
+        );
+    });
+});
+
