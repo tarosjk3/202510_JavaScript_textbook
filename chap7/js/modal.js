@@ -117,3 +117,8 @@ mask.addEventListener('click', () => {
 
 // 有効期限の設定（例: 1時間後）
 const expire = Date.now() + 3600000;
+
+
+document.querySelector('.test').addEventListener('click', () => {
+    console.log('testをクリックしました')
+})

@@ -167,3 +167,38 @@ menuClose.addEventListener('click', () => {
     });
 });
 
+
+// スクロールで要素を表示
+const animateFade = (entries, obs) => {
+    console.log('フェードイン');
+    console.log(entries);
+
+    entries.forEach((entry) => {
+        if(entry.isIntersecting) {
+            console.log(entry.target, 'が交差しました');
+            entry.target.animate(
+                {
+                    opacity: [0, 1],
+                    filter: ['blur(.4rem)', 'blur(0)'],
+                    translate:['0 4rem', 0],
+                },
+                {
+                    duration: 2000,
+                    easing: 'ease',
+                    fill: 'forwards',
+                }
+            );
+
+            // 一度アニメーションしたら、監視対象から要素を外しアニメーションしないように設定
+            obs.unobserve(entry.target);
+        }
+    });
+};
+
+const fadeObserver = new IntersectionObserver(animateFade);
+
+const fadeElements = document.querySelectorAll('.fadein');
+
+fadeElements.forEach((fadeElement) => {
+    fadeObserver.observe(fadeElement);
+});
